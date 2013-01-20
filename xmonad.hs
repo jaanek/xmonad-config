@@ -131,10 +131,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. controlMask, xK_l),
      spawn "xscreensaver-command -lock")
 
+  --
+  -- https://bbs.archlinux.org/viewtopic.php?id=122949
+  --
+  , ((modMask, xK_p), spawn "dmenu_run | dmenu -b")
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
-  , ((modMask, xK_p),
-     spawn "exe=`dmenu_path_c | yeganesh` && eval \"exec $exe\"")
+  -- , ((modMask, xK_p),
+  --   spawn "exe=`dmenu_path | yeganesh` && eval \"exec $exe\"")
+  --   spawn "exe=`dmenu_path_c | yeganesh` && eval \"exec $exe\"")
 
   -- Take a screenshot in select mode.
   -- After pressing this key binding, click a window, or draw a rectangle with
