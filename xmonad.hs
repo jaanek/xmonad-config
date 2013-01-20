@@ -134,7 +134,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --
   -- https://bbs.archlinux.org/viewtopic.php?id=122949
   --
-  , ((modMask, xK_p), spawn "dmenu_run | dmenu -b")
+  , ((modMask, xK_p), spawn "dmenu_run")
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
   -- , ((modMask, xK_p),
