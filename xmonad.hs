@@ -24,7 +24,8 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/bin/urxvt"
+-- myTerminal = "/usr/bin/urxvt"
+myTerminal = "gnome-terminal"
 
 
 ------------------------------------------------------------------------
@@ -115,7 +116,7 @@ myBorderWidth = 1
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask = mod1Mask
+myModMask = mod4Mask
  
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
@@ -321,15 +322,24 @@ myStartupHook = return ()
 --
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
-  xmonad $ defaults {
-      logHook = dynamicLogWithPP $ xmobarPP {
-            ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
-          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-          , ppSep = "   "}
-      , manageHook = manageDocks <+> myManageHook
-      , startupHook = setWMName "LG3D"
-  }
+  xmonad $ defaultConfig
+    {borderWidth = 2
+    , normalBorderColor = "#FFFFFF"
+    , focusedBorderColor = "#00C3C8"
+    , modMask = mod4Mask     -- Rebind Mod to the Windows key
+--    , handleEventHook    = fullscreenEventHook
+    , startupHook = setWMName "LG3D" --java hack
+    , terminal = "gnome-terminal"
+    }
+--  xmonad $ defaults {
+--      logHook = dynamicLogWithPP $ xmobarPP {
+--            ppOutput = hPutStrLn xmproc
+--          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
+--          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+--          , ppSep = "   "}
+--      , manageHook = manageDocks <+> myManageHook
+--      , startupHook = setWMName "LG3D"
+--  }
  
 
 ------------------------------------------------------------------------
