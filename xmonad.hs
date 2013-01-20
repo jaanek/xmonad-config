@@ -54,7 +54,7 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Galculator"     --> doFloat
     , className =? "Steam"          --> doFloat
-    , className =? "Gimp"           --> doFloat
+--    , className =? "Gimp"           --> doFloat
     , resource  =? "gpicview"       --> doFloat
     , className =? "MPlayer"        --> doFloat
     , className =? "VirtualBox"     --> doShift "4:vm"
@@ -322,24 +322,15 @@ myStartupHook = return ()
 --
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
-  xmonad $ defaultConfig
-    {borderWidth = 2
-    , normalBorderColor = "#FFFFFF"
-    , focusedBorderColor = "#00C3C8"
-    , modMask = mod4Mask     -- Rebind Mod to the Windows key
---    , handleEventHook    = fullscreenEventHook
-    , startupHook = setWMName "LG3D" --java hack
-    , terminal = "gnome-terminal"
-    }
---  xmonad $ defaults {
---      logHook = dynamicLogWithPP $ xmobarPP {
---            ppOutput = hPutStrLn xmproc
---          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
---          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
---          , ppSep = "   "}
---      , manageHook = manageDocks <+> myManageHook
---      , startupHook = setWMName "LG3D"
---  }
+  xmonad $ defaults {
+      logHook = dynamicLogWithPP $ xmobarPP {
+            ppOutput = hPutStrLn xmproc
+          , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
+          , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+          , ppSep = "   "}
+      , manageHook = manageDocks <+> myManageHook
+      , startupHook = setWMName "LG3D"
+  }
  
 
 ------------------------------------------------------------------------
